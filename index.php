@@ -10,7 +10,7 @@ if(!isset($_SESSION['isLogIn'])){
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>Austine Samuel Test 2 Backend</title>
+  <title>Test 2 Backend</title>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.1/tailwind.min.css'><link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css">
 
@@ -499,7 +499,7 @@ Eager to contribute innovatively.
             <h1 class="text-2xl font-semibold whitespace-nowrap">Dashboard</h1>
             <div class="space-y-6 md:space-x-2 md:space-y-0">
               <a
-              href="https://github.com/Kamona-WD/starter-dashboard-layout"
+              href="https://github.com/AustineSamuel/LandingPageDashboard"
               target="_blank"
               class="inline-flex items-center justify-center px-4 py-1 space-x-1 bg-gray-200 rounded-md shadow hover:bg-opacity-20"
             >
@@ -513,19 +513,12 @@ Eager to contribute innovatively.
               </span>
               <span>View on Github</span>
             </a>
-            <a
-              href="https://kamona-wd.github.io/kwd-dashboard/"
-              target="_blank"
-              class="inline-flex items-center justify-center px-4 py-1 space-x-1 bg-red-500 text-white rounded-md shadow animate-bounce hover:bg-red-600"
-            >
-              <span>See Dark & Light version</span>
-            </a>
             </div>
           </div>
 
           <!-- Start Content -->
           <div class="grid grid-cols-1 gap-5 mt-6 sm:grid-cols-2 lg:grid-cols-4">
-            <template x-for="i in 4" :key="i">
+            
               <div class="p-4 transition-shadow border rounded-lg shadow-sm hover:shadow-lg">
                 <div class="flex items-start justify-between">
                   <div class="flex flex-col space-y-2">
@@ -539,7 +532,7 @@ Eager to contribute innovatively.
                   <span>from 2019</span>
                 </div>
               </div>
-            </template>
+    
           </div>
 
           <!-- Table see (https://tailwindui.com/components/application-ui/lists/tables) -->
