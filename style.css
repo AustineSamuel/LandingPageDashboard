@@ -1,0 +1,10 @@
+[x-cloak] { display: none; }
+
+  .code-icon::before {
+    content: '\003C\002F\003E'; /* Unicode for </> */
+    font-family: 'Feather';
+  }
+  .contact-developer-icon::before {
+    content: '\1F464'; /* Unicode for the contact developer icon in Feather Icons */
+    font-family: 'Feather';
+  }
