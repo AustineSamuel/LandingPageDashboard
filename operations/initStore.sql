@@ -33,7 +33,6 @@ CREATE TABLE headingSlideContainers (
     name VARCHAR(255) NOT NULL,
     clickRedir VARCHAR(255) NOT NULL
 );
-
 CREATE TABLE whoWeAreComponent (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     heading VARCHAR(255) NOT NULL,
@@ -49,7 +48,6 @@ CREATE TABLE OurInfo (
     projectsDelivered VARCHAR(255) NOT NULL,
     countriesServed VARCHAR(255) NOT NULL
 );
-
 
 CREATE TABLE ServicesWeProvide (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -76,6 +74,7 @@ CREATE TABLE LatestProjectsList (
     heading VARCHAR(255) NOT NULL,
     subHeading VARCHAR(255) NOT NULL
 );
+---stop
 
 CREATE TABLE BusinessInfoImage (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,

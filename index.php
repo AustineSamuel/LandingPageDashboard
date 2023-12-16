@@ -66,7 +66,7 @@ if(!isset($_SESSION['isLogIn'])){
           </button>
         </div>
         <!-- Sidebar links -->
-        <nav class="flex-1 overflow-hidden hover:overflow-y-auto">
+        <nav class="flex-1 overflow-hidden hover:overflow-y-auto" style="max-height:100vh;overflow:auto;">
           <ul class="p-2 overflow-hidden">
             <li>
               <a
@@ -159,6 +159,86 @@ if(!isset($_SESSION['isLogIn'])){
       //
     </span>
     <span :class="{ 'lg:hidden': !isSidebarOpen }">Edit Heading Slides</span>
+  </a>
+</li>
+
+
+<li>
+  <a href="/forms/whoWeAre.php" class="flex items-center justify-content-center p-2 space-x-2 rounded-md hover:bg-gray-100"   :class="{'justify-center': !isSidebarOpen}">
+    <span className="text-center " >
+      //
+    </span>
+    <span :class="{ 'lg:hidden': !isSidebarOpen }">Edit WhoWeAre</span>
+  </a>
+</li>
+
+
+<li>
+  <a href="/forms/OurInfoForm.php" class="flex items-center justify-content-center p-2 space-x-2 rounded-md hover:bg-gray-100"   :class="{'justify-center': !isSidebarOpen}">
+    <span className="text-center " >
+      //
+    </span>
+    <span :class="{ 'lg:hidden': !isSidebarOpen }">Edit OurInfoForm</span>
+  </a>
+</li>
+
+
+<li>
+  <a href="/forms/servicesWeProvide.php" class="flex items-center justify-content-center p-2 space-x-2 rounded-md hover:bg-gray-100"   :class="{'justify-center': !isSidebarOpen}">
+    <span className="text-center " >
+      //
+    </span>
+    <span :class="{ 'lg:hidden': !isSidebarOpen }">Edit ServicesWeProvide</span>
+  </a>
+</li>
+
+<li>
+  <a href="/forms/addTechnologie.php" class="flex items-center justify-content-center p-2 space-x-2 rounded-md hover:bg-gray-100"   :class="{'justify-center': !isSidebarOpen}">
+    <span className="text-center " >
+      //
+    </span>
+    <span :class="{ 'lg:hidden': !isSidebarOpen }">Add Technology</span>
+  </a>
+</li>
+
+
+<li>
+  <a href="/forms/updateTechnologies.php" class="flex items-center justify-content-center p-2 space-x-2 rounded-md hover:bg-gray-100"   :class="{'justify-center': !isSidebarOpen}">
+    <span className="text-center " >
+      //
+    </span>
+    <span :class="{ 'lg:hidden': !isSidebarOpen }">Update Technology</span>
+  </a>
+</li>
+
+
+<li>
+  <a href="/forms/updateLetestProjectText.php" class="flex items-center justify-content-center p-2 space-x-2 rounded-md hover:bg-gray-100"   :class="{'justify-center': !isSidebarOpen}">
+    <span className="text-center " >
+      //
+    </span>
+    <span :class="{ 'lg:hidden': !isSidebarOpen }">Update Latest Project Text</span>
+  </a>
+</li>
+
+
+
+<li>
+  <a href="/forms/addLestestProject.php" class="flex items-center justify-content-center p-2 space-x-2 rounded-md hover:bg-gray-100"   :class="{'justify-center': !isSidebarOpen}">
+    <span className="text-center" >
+      //
+    </span>
+    <span :class="{ 'lg:hidden': !isSidebarOpen }">Add Latest project</span>
+  </a>
+</li>
+
+
+<li>
+  <a href="/forms/updateLetestProject.php" class="flex items-center justify-content-center p-2 space-x-2 rounded-md hover:bg-gray-100"   :class="{'justify-center': !isSidebarOpen}">
+    <span className="text-center" >
+      //
+    </span>
+    <span :class="{ 'lg:hidden': !isSidebarOpen }">Update Latest project</span>
   </a>
 </li>
 
