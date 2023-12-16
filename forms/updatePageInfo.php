@@ -10,7 +10,7 @@ $currentInfo = getTable("pageInfo");
 // Login File
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pageInfo = new Pageinfo($GLOBALS['CONNECTION']);
-    $logo = uploadImage($_FILES['logo']);
+    $logo = uploadImage($_FILES['logo'],"../images/");
     
     if (!$logo) {
         $error = "Error: Logo upload returned with {$logo}";

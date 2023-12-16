@@ -145,11 +145,20 @@ if(!isset($_SESSION['isLogIn'])){
 
 
 <li>
-  <a href="/forms/addEditSlides.php" class="flex items-center justify-content-center p-2 space-x-2 rounded-md hover:bg-gray-100"   :class="{'justify-center': !isSidebarOpen}">
+  <a href="/forms/addSlides.php" class="flex items-center justify-content-center p-2 space-x-2 rounded-md hover:bg-gray-100"   :class="{'justify-center': !isSidebarOpen}">
     <span className="text-center " >
       //
     </span>
-    <span :class="{ 'lg:hidden': !isSidebarOpen }">Add Edit Heading Slides</span>
+    <span :class="{ 'lg:hidden': !isSidebarOpen }">Add Heading Slides</span>
+  </a>
+</li>
+
+<li>
+  <a href="/forms/editSlides.php" class="flex items-center justify-content-center p-2 space-x-2 rounded-md hover:bg-gray-100"   :class="{'justify-center': !isSidebarOpen}">
+    <span className="text-center " >
+      //
+    </span>
+    <span :class="{ 'lg:hidden': !isSidebarOpen }">Edit Heading Slides</span>
   </a>
 </li>
 
