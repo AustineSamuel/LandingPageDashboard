@@ -105,7 +105,56 @@ if(!isset($_SESSION['isLogIn'])){
   </a>
 </li>
 
-            <!-- Sidebar Links... -->
+<li>
+  <a href="/forms/updatePageInfo.php" class="flex items-center justify-content-center p-2 space-x-2 rounded-md hover:bg-gray-100"   :class="{'justify-center': !isSidebarOpen}">
+    <span className="text-center " >
+      //
+    </span>
+    <span :class="{ 'lg:hidden': !isSidebarOpen }">Edit Page Info</span>
+  </a>
+</li>
+
+
+<li>
+  <a href="/forms/addNavigation.php" class="flex items-center justify-content-center p-2 space-x-2 rounded-md hover:bg-gray-100"   :class="{'justify-center': !isSidebarOpen}">
+    <span className="text-center " >
+      //
+    </span>
+    <span :class="{ 'lg:hidden': !isSidebarOpen }">Add Navigation</span>
+  </a>
+</li>
+
+<li>
+  <a href="/forms/addNavigationOption.php" class="flex items-center justify-content-center p-2 space-x-2 rounded-md hover:bg-gray-100"   :class="{'justify-center': !isSidebarOpen}">
+    <span className="text-center " >
+      //
+    </span>
+    <span :class="{ 'lg:hidden': !isSidebarOpen }">Add Navigation option</span>
+  </a>
+</li>
+
+
+<li>
+  <a href="/forms/editHeadingText.php" class="flex items-center justify-content-center p-2 space-x-2 rounded-md hover:bg-gray-100"   :class="{'justify-center': !isSidebarOpen}">
+    <span className="text-center " >
+      //
+    </span>
+    <span :class="{ 'lg:hidden': !isSidebarOpen }">Add Edit HeadingTexts</span>
+  </a>
+</li>
+
+
+<li>
+  <a href="/forms/addEditSlides.php" class="flex items-center justify-content-center p-2 space-x-2 rounded-md hover:bg-gray-100"   :class="{'justify-center': !isSidebarOpen}">
+    <span className="text-center " >
+      //
+    </span>
+    <span :class="{ 'lg:hidden': !isSidebarOpen }">Add Edit Heading Slides</span>
+  </a>
+</li>
+
+
+<!-- Sidebar Links... -->
           </ul>
         </nav>
         <!-- Sidebar footer -->
