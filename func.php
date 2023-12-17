@@ -94,7 +94,7 @@ else{
 }
 }
 
-function uploadImage($name=array(),$folder=false,$surportedExtn=["image/jpeg","image/jpg","image/png","image/jpg","image/gif"]){
+function uploadImage($name=array(),$folder=false,$surportedExtn=["image/jpeg","image/jpg","image/png","image/jpg","image/gif","image/svg+xml","image/svg"]){
   if($name["error"]==0){
   $tmp=$name["tmp_name"];
   $type=trim(mime_content_type($tmp));
@@ -198,4 +198,9 @@ global $errorList;
     fclose($errorLogs);
     if(!$continueExecution)exit('SqlError');
   }
+}
+
+
+function logClient($arr){
+echo "<script>console.log('".json_encode($arr)."')</script>";
 }

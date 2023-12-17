@@ -1,10 +1,23 @@
+<?php 
+require "../connection.php";
+
+$pageInfo=getTable("pageInfo");
+if(count($pageInfo)>0)$pageInfo=$pageInfo[0];
+
+
+?>
+
+
+
+
+
 <!doctype html>
 <html lang="en">
 
 
 <head>
 <meta charset="utf-8" />
-<title>Austine : Frontend</title>
+<title><?=$pageInfo['name']?></title>
 
 <meta name="description" content="Creative Agency, Marketing Agency Template">
 <meta name="keywords" content="Creative Agency, Marketing Agency">
@@ -53,62 +66,36 @@
 <button type="button" class="menu-mobile-close"><i class="fa-solid fa-xmark"></i></button>
 </div>
 <ul class="menu-section">
-<li class="menu-item-has-children">
-<a href="#.">Developer <i class="fa-solid fa-angle-down"></i></a>
-<div class="menu-subs menu-column-1">
-<ul>
-<li><a href="whatsapp://send?phone=08072999853">Contact Austine Samuel</a></li>
-</ul>
-</div>
-</li>
-<li class="menu-item-has-children">
-<a href="#.">About Us <i class="fa-solid fa-angle-down"></i></a>
-<div class="menu-subs menu-column-1">
-<ul>
-<li><a href="#">About Page 1</a></li>
-<li><a href="#">About Page 2</a></li>
-</ul>
-</div>
-</li>
-<li class="menu-item-has-children">
-<a href="#.">Services <i class="fa-solid fa-angle-down"></i></a>
-<div class="menu-subs menu-column-1">
-<ul>
-<li><a href="#">Service Page 1</a></li>
-<li><a href="#">Service Page 2</a></li>
-<li><a href="#">Service Page 3</a></li>
-</ul>
-</div>
-</li>
-<li class="menu-item-has-children">
-<a href="#.">Portfolio <i class="fa-solid fa-angle-down"></i></a>
-<div class="menu-subs menu-column-1">
-<ul>
-<li><a href="#">Portfolio Page 1</a></li>
-<li><a href="#">Portfolio Page 2</a></li>
-<li><a href="#">Portfolio Page 3</a></li>
-</ul>
-</div>
-</li>
-<li class="menu-item-has-children">
-<a href="#.">Blogs <i class="fa-solid fa-angle-down"></i></a>
-<div class="menu-subs menu-column-1">
-<ul>
-<li><a href="#">Blog Page 1</a></li>
-<li><a href="#">Blog Page 2</a></li>
-<li><a href="#">Blog Details</a></li>
-</ul>
-</div>
-</li>
-<li class="menu-item-has-children">
-<a href="#.">Contact Us <i class="fa-solid fa-angle-down"></i></a>
-<div class="menu-subs menu-column-1">
-<ul>
-<li><a href="https://wa.me/2348072999853">Contact Page 1</a></li>
-<li><a href="https://wa.me/2348072999853">Contact Page 2</a></li>
-</ul>
-</div>
-</li>
+
+<?php
+$navigations = getTable("navigations");
+$subNavigations = getTable("subNavigations");
+
+foreach ($navigations as $navigation) {
+    $options = "";
+    $subNavigationsList = array_filter($subNavigations, function ($value) use ($navigation) {
+        return $value["hashTag"] == $navigation["hashTag"];
+    });
+
+    foreach ($subNavigationsList as $value) {
+        $options .= "<li><a href={$value['url']}>{$value['name']}</a></li>";
+    }
+
+    echo "
+    <li class='menu-item-has-children'>
+        <a href='#'>{$navigation['name']}<i class='fa-solid fa-angle-down'></i></a>
+        <div class='menu-subs menu-column-1'>
+            <ul>
+                {$options}
+            </ul>
+        </div>
+    </li>";
+}
+
+
+?>
+
+
 <li class="darkmodeswitch">
 <div class="switch-wrapper d-none"> <label class="switch" for="blueket"> <input type="checkbox" id="blueket" /> <span class="slider round"></span> </label> </div>
 </li>
@@ -127,9 +114,13 @@
 </div>
 </header>
 
-
+<?php 
+$editHeadingTexts=getTable("editHeadingTexts");
+if(count($editHeadingTexts) > 0)$editHeadingTexts=$editHeadingTexts[0];
+?>
 <section class="demo-7-hero text-white">
-<div class="herodiv">
+<div class="herodiv" >
+
 <video autoplay muted loop id="myVideo" poster="images/object/worlds.jpg">
 <source src="images/object/worlds.mp4" type="video/mp4">
 </video>
@@ -138,9 +129,9 @@
 <div class="row justify-content-center">
 <div class="col-lg-5">
 <div class="hero-content">
-<h1 class="mb20 wow fadeInUp" data-wow-delay=".8s"> Design Products<br> Deliver Experience </h1>
-<p class="wow fadeInUp" data-wow-delay="1.2s">A full-service digital marketing firm that specialises in human-centered experiences. We bring companies and people together.</p>
-<a href="https://wa.me/2348072999853" class="sw-btn sw-blue-btn wow fadeInUp mt40" data-wow-delay="1.4s">Get Started <i class="fa-solid fa-arrow-trend-up"></i></a>
+<h1 class="mb20 wow fadeInUp" data-wow-delay=".8s"> <?php echo $editHeadingTexts['h1'] ?></h1>
+<p class="wow fadeInUp" data-wow-delay="1.2s"><?php echo $editHeadingTexts['subH1'] ?></p>
+<a href="https://wa.me/2348072999853" class="sw-btn sw-blue-btn wow fadeInUp mt40" onclick="window.location.href='<?php echo $editHeadingTexts['getStartedLink'] ?>'" data-wow-delay="1.4s">Get Started <i class="fa-solid fa-arrow-trend-up"></i></a>
 <div class="hero-iconsets wow fadeInUp" data-wow-delay="1.6s">
 <a href="#"><img src="images/icons/goodfirm-1.svg" alt="img"></a>
 <a href="#"><img src="images/icons/clutch-1.svg" alt="img"></a>
@@ -150,28 +141,31 @@
 </div>
 <div class="col-lg-7 mmt40">
 <div class="hero-rght-sw wow fadeInUp" data-wow-delay="1.8s">
-<div class="video-button" onclick="()=>1"> <a href="#" class="video-play"> <span class="play-btn"> <i class="fa fa-play"></i> </span> </a> </div>
-<h3>We Design Digital Solutions <span>For Brands, Companies & Startups. </span></h3>
+<div class="video-button" onclick="
+ window.location.href='<?php $editHeadingTexts['playButtonLink']?>'   
+"> <a href="#" class="video-play"> <span class="play-btn"> <i class="fa fa-play"></i> </span> </a> </div>
+<h3><?php echo$editHeadingTexts['headingMessageText'] ?></h3>
 </div>
 <div class="cardsevc service--cards owl-carousel wow fadeInUp" data-wow-delay="2.5s">
-<div class="service-card-div service-slide">
-<a href="#">
-<div class="service-images"><img src="images/object/Other-07.png" alt="#"></div>
-<div class="service-name">Web <br> Design </div>
-<div class="circleffect">
-<div class="animation">&nbsp;</div>
+
+<?php
+$headingSlides=getTable("headingSlideContainers");
+foreach($headingSlides as $headingSlidesItem){
+echo "
+
+<div class='service-card-div service-slide'>
+<a href='{$headingSlidesItem['clickRedir']}'>
+<div class='service-images'><img src='{$headingSlidesItem['iconImage']}' alt='#'></div>
+<div class='service-name'>{$headingSlidesItem['name']}</div>
+<div class='circleffect'>
+<div class='animation'>&nbsp;</div>
 </div>
 </a>
 </div>
-<div class="service-card-div service-slide">
-<a href="#">
-<div class="service-images"><img src="images/object/Other-04.png" alt="#"></div>
-<div class="service-name">App <br> Development </div>
-<div class="circleffect">
-<div class="animation">&nbsp;</div>
-</div>
-</a>
-</div>
+";
+}
+?>
+<!--
 <div class="service-card-div service-slide">
 <a href="https://wa.me/2348072999853">
 <div class="service-images"><img src="images/object/Other-20.png" alt="#"></div>
@@ -197,6 +191,7 @@
 <div class="circleffect">
 <div class="animation">&nbsp;</div>
 </div>
+
 </a>
 </div>
 <div class="service-card-div service-slide">
@@ -208,6 +203,8 @@
 </div>
 </a>
 </div>
+--->
+
 </div>
 </div>
 </div>
@@ -220,36 +217,44 @@
 <div class="row justify-content-between">
 <div class="col-lg-6">
 <div class="about-conent paragraph">
+    <?php
+$whoWeAreComponent=getTable("whoWeAreComponent");
+if($whoWeAreComponent)$whoWeAreComponent=$whoWeAreComponent[0]
+    ?>
 <span class="scriptheading dashbefore mb15 wow fadeIn" data-wow-delay=".2s" data-wow-duration="1500ms">WHO WE ARE</span>
-<h2 class="mb20 wow fadeIn" data-wow-delay=".4s" data-wow-duration="1500ms">Hire the Best Web and Mobile App Developers For Your Project</h2>
-<p class="wow fadeIn" data-wow-delay=".6s" data-wow-duration="1500ms">Expertise helps Blueket tackle the world's most difficult challenges. Blueket provides digital products for worldwide brands on the web, mobile, and linked platforms. Expertise helps Blueket tackle the world's most difficult challenges. Blueket provides digital products for worldwide brands on the web, mobile, and linked platforms.</p>
-<p class="wow fadeIn" data-wow-delay=".8s" data-wow-duration="1500ms">Expertise helps Blueket tackle the world's most difficult challenges. Blueket provides digital products for worldwide brands on the web.</p>
-<a href="https://wa.me/2348072999853" class="sw-btn sw-blue-btn mt30">Read More</a>
+<h2 class="mb20 wow fadeIn" data-wow-delay=".4s" data-wow-duration="1500ms"><?php echo $whoWeAreComponent['heading']?></h2>
+<p class="wow fadeIn" data-wow-delay=".6s" data-wow-duration="1500ms"><?php echo $whoWeAreComponent['text']?></p>
+<a href="<?php echo $whoWeAreComponent['clickRedir']?>" class="sw-btn sw-blue-btn mt30"><?php echo $whoWeAreComponent['buttonText'] ?></a>
 </div>
 </div>
+
+<?php
+$OurInfo=getTable("OurInfo");
+if($OurInfo)$OurInfo=$OurInfo[0]
+    ?>
 <div class="col-lg-5 mmt40">
 <div class="row blockcntr swpt1">
 <div class="counter-numbers  demo2counter col-lg-6 col-md-12">
 <div class="counter-setdiv shadow wow fadeIn" data-wow-delay=".1s">
 <img src="images/icons/rocket.gif" alt="img">
-<p> <span data-count-to="08" class="odometer"></span>+</p>
+<p> <span data-count-to="<?php  echo $OurInfo['YearsOfExperience']?>" class="odometer"></span>+</p>
 <span class="countertag">Years Experience</span>
 </div>
 <div class="counter-setdiv shadow wow fadeIn" data-wow-delay=".7s">
 <img src="images/icons/laptop.gif" alt="img">
-<p><span data-count-to="500" class="odometer"></span>+</p>
+<p><span data-count-to="<?php  echo $OurInfo['projectsDelivered']?>" class="odometer"></span>+</p>
 <span class="countertag">Projects Delivered</span>
 </div>
 </div>
 <div class="counter-numbers  demo2counter col-lg-6 col-md-12 seccnt">
 <div class="counter-setdiv shadow wow fadeIn" data-wow-delay=".4s">
 <img src="images/icons/user.gif" alt="img">
-<p><span data-count-to="80" class="odometer"></span>+</p>
+<p><span data-count-to="<?php  echo $OurInfo['talentedTeam']?>" class="odometer"></span>+</p>
 <span class="countertag">Talented Team</span>
 </div>
 <div class="counter-setdiv shadow wow fadeIn" data-wow-delay="1s">
 <img src="images/icons/earth.gif" alt="img">
-<p><span data-count-to="50" class="odometer"></span>+</p>
+<p><span data-count-to="<?php  echo $OurInfo['countriesServed']?>" class="odometer"></span>+</p>
 <span class="countertag">Countries Served</span>
 </div>
 </div>
@@ -302,120 +307,42 @@
 <div class="col-lg-12">
 <div class="tech-slider mt100">
 <div class="sw-icon-slider owl-carousel">
-<div class="icon-slider-block">
-<div class="slider-icon"> <img src="images/icons/tech-icons/android.svg" alt="Android"> </div>
-<div class="slider-icon-text">
-<p>Android </p>
+
+<?php 
+$Technologies=getTable("Technologies");
+foreach($Technologies as $Technology){
+echo "<div class='icon-slider-block'>
+<div class='slider-icon'> <img src='{$Technology['icon']}' alt='Android'> </div>
+<div class='slider-icon-text'>
+<p>{$Technology['name']}</p>
 </div>
 </div>
-<div class="icon-slider-block">
-<div class="slider-icon"> <img src="images/icons/tech-icons/aws.svg" alt="aws"> </div>
-<div class="slider-icon-text">
-<p>aws</p>
-</div>
-</div>
-<div class="icon-slider-block">
-<div class="slider-icon"> <img src="images/icons/tech-icons/figma.svg" alt="figma"> </div>
-<div class="slider-icon-text">
-<p>figma</p>
-</div>
-</div>
-<div class="icon-slider-block">
-<div class="slider-icon"> <img src="images/icons/tech-icons/firebase.svg" alt="firebase"> </div>
-<div class="slider-icon-text">
-<p>firebase</p>
-</div>
-</div>
-<div class="icon-slider-block">
-<div class="slider-icon"> <img src="images/icons/tech-icons/flutter.svg" alt="flutter"> </div>
-<div class="slider-icon-text">
-<p>flutter</p>
-</div>
-</div>
-<div class="icon-slider-block">
-<div class="slider-icon"> <img src="images/icons/tech-icons/Google-cloud.svg" alt="Google-cloud"> </div>
-<div class="slider-icon-text">
-<p>Google-cloud</p>
-</div>
-</div>
-<div class="icon-slider-block">
-<div class="slider-icon"> <img src="images/icons/tech-icons/java.svg" alt="java">
-</div>
-<div class="slider-icon-text">
-<p>Java</p>
-</div>
-</div>
-<div class="icon-slider-block">
-<div class="slider-icon"> <img src="images/icons/tech-icons/Kotlin.svg" alt="Kotlin"> </div>
-<div class="slider-icon-text">
-<p>Kotlin</p>
-</div>
-</div>
-<div class="icon-slider-block">
-<div class="slider-icon"> <img src="images/icons/tech-icons/magento.svg" alt="magento"> </div>
-<div class="slider-icon-text">
-<p>magento</p>
-</div>
-</div>
-<div class="icon-slider-block">
-<div class="slider-icon"> <img src="images/icons/tech-icons/Node.js.svg" alt="Node.js">
-</div>
-<div class="slider-icon-text">
-<p>Node.js</p>
-</div>
-</div>
-<div class="icon-slider-block">
-<div class="slider-icon"> <img src="images/icons/tech-icons/python.svg" alt="python">
-</div>
-<div class="slider-icon-text">
-<p>python</p>
-</div>
-</div>
-<div class="icon-slider-block">
-<div class="slider-icon"> <img src="images/icons/tech-icons/react.svg" alt="react">
-</div>
-<div class="slider-icon-text">
-<p>react</p>
-</div>
-</div>
-<div class="icon-slider-block">
-<div class="slider-icon"> <img src="images/icons/tech-icons/sketch.svg" alt="sketch">
-</div>
-<div class="slider-icon-text">
-<p>sketch</p>
-</div>
-</div>
-<div class="icon-slider-block">
-<div class="slider-icon"> <img src="images/icons/tech-icons/sqlite.svg" alt="sqlite">
-</div>
-<div class="slider-icon-text">
-<p>sqlite</p>
-</div>
-</div>
-<div class="icon-slider-block">
-<div class="slider-icon"> <img src="images/icons/tech-icons/swift.svg" alt="swift">
-</div>
-<div class="slider-icon-text">
-<p>swift</p>
-</div>
-</div>
+";
+}
+?>
 </div>
 </div>
 </div>
 </div>
 </div>
 </section>
-
-
 <section class="word-block-div section-space">
 <div class="container">
 <div class="row">
 <div class="col-lg-6">
-<h2 class="text-gradient-1 wow fadeInUp" data-wow-delay=".4s">Latest Projects</h2>
+   <h2 class="text-gradient-1 wow fadeInUp" data-wow-delay=".4s"><?php 
+
+    $latestProjects=getTable("LatestProjects");
+    if(count($latestProjects) > 0)$latestProjects=$latestProjects[0];
+    else{
+        echo "cannot find latest project";
+    }
+   $latestProjectsList=getTable("LatestProjectsList");
+  echo $latestProjects['heading'] ?></h2>
 <a href="portfolio.html" class="inline-btn mt20 wow fadeInUp" data-wow-delay=".8s">View all Projects <i class="fa-solid fa-arrow-trend-up"></i></a>
 </div>
 <div class="col-lg-6 mmt30">
-<p class=" wow fadeInUp" data-wow-delay="1.2s">Coder-Test overcomes challenges, achieves results, and adds value to our clients and partners. Take a look at some of our clients' success stories. Take a look at some of our clients' success stories.</p>
+<p class=" wow fadeInUp" data-wow-delay="1.2s"><?php echo $latestProjects['subHeading'] ?></p>
 </div>
 </div>
 </div>
@@ -423,60 +350,24 @@
 <div class="row  wow fadeInUp" data-wow-delay="1.4s">
 <div class="col-lg-12">
 <div class="work-slide owl-carousel full-button centerbtns">
-<div class="our-works">
-<div class="work-imags"><a href="#"><img src="images/portfolio/work-1.jpg" alt="work" class="card-img-round"></a></div>
-<div class="infoblocis">
-<div class="nameofitem">
-<h3>Kyntra: Online Shopping</h3>
-<p class="mt5">Flutter Development</p>
+
+<?php 
+
+foreach ($latestProjectsList as $key => $project) {
+    # code...
+
+echo "<div class='our-works'>
+<div class'work-imags'><a href='#'><img src='{$project['image']}'alt='work' class='card-img-round'></a></div>
+<div class='infoblocis'>
+<div class='nameofitem'>
+<h3>{$project['heading']}</h3>
+<p class='mt5'>{$project['subHeading']}</p>
 </div>
 </div>
-</div>
-<div class="our-works">
-<div class="work-imags"><a href="#"><img src="images/portfolio/work-2.jpg" alt="work" class="card-img-round"></a></div>
-<div class="infoblocis">
-<div class="nameofitem">
-<h3>Bradley's Bakery</h3>
-<p class="mt5">Web Design</p>
-</div>
-</div>
-</div>
-<div class="our-works">
-<div class="work-imags"><a href="#"><img src="images/portfolio/work-3.jpg" alt="work" class="card-img-round"></a></div>
-<div class="infoblocis">
-<div class="nameofitem">
-<h3>Tango Fashion Store</h3>
-<p class="mt5">App Development</p>
-</div>
-</div>
-</div>
-<div class="our-works">
-<div class="work-imags"><a href="#"><img src="images/portfolio/work-4.jpg" alt="work" class="card-img-round"></a></div>
-<div class="infoblocis">
-<div class="nameofitem">
-<h3>Ruppay Investment</h3>
-<p class="mt5">iOs Development</p>
-</div>
-</div>
-</div>
-<div class="our-works">
-<div class="work-imags"><a href="#"><img src="images/portfolio/work-5.jpg" alt="work" class="card-img-round"></a></div>
-<div class="infoblocis">
-<div class="nameofitem">
-<h3>Kiya NFT Market</h3>
-<p class="mt5">Web Development</p>
-</div>
-</div>
-</div>
-<div class="our-works">
-<div class="work-imags"><a href="#"><img src="images/portfolio/work-3.jpg" alt="work" class="card-img-round"></a></div>
-<div class="infoblocis">
-<div class="nameofitem">
-<h3>Tango Fashion Store</h3>
-<p class="mt5">App Development</p>
-</div>
-</div>
-</div>
+</div>";
+}
+?>
+
 </div>
 </div>
 </div>
@@ -488,17 +379,23 @@
 <div class="container index-up">
 <div class="row justify-content-between">
 <div class="col-lg-4">
-<div class="roundimg"><img src="images/common/attractive-laughing-freelancer.jpg" alt="img" class="w-100"></div>
+    <?php
+$BusinessInfoImage=getTable("BusinessInfoImage");
+if(count($BusinessInfoImage))$BusinessInfoImage=$BusinessInfoImage[0];
+    ?>
+<div class="roundimg"><img src="<?php echo $BusinessInfoImage['image']; ?>" alt="img" class="w-100"></div>
 </div>
 <div class="col-lg-7 mmt40">
-<h3 class="text-gradient-1 mb15 wow fadeIn" data-wow-delay=".2s">Make your Business Better. Grow your Business</h3>
-<p class="wow fadeIn" data-wow-delay=".6s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tincidunt finibus tortor. Donec lobortis augue sed ante molestie, vitae maximus nunc semper.</p>
-<p class="wow fadeIn" data-wow-delay=".8s">Coder-Test overcomes challenges, achieves results, and adds value to our clients and partners. Take a look at some of our clients' success stories. Take a look at some of our clients' success stories.</p>
+<h3 class="text-gradient-1 mb15 wow fadeIn" data-wow-delay=".2s"><?php echo $BusinessInfoImage["heading"]; ?></h3>
+<p class="wow fadeIn" data-wow-delay=".6s"><?php echo $BusinessInfoImage['text']; ?></p>
 <h5 class="mt30 wow fadeIn" data-wow-delay=".9s">Talk with the expert to grow your business</h5>
 <ul class="bulletpoints mt30  wow fadeInUp" data-wow-delay="1s">
-<li>Ut eu lectus non massa rhoncus elementum.</li>
-<li>Nunc scelerisque urna nec quam efficitur semper.</li>
-<li>Ut eu lectus non massa rhoncus elementum.</li>
+    <?php 
+    $BusinessInfoList=getTable("BusinessInfoList");
+    foreach($BusinessInfoList as $Business){
+        echo "<li>{$Business['text']}</li>";
+    }
+    ?>
 </ul>
 </div>
 </div>

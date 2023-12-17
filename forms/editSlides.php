@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['editHeadingSlideConta
         $clickRedir = $record['clickRedir'];
 
         // Process image upload
-        if (isset($_FILES["iconImage".$id])) {
+        if (isset($_FILES["iconImage".$id]) && $_FILES["iconImage".$id]['error'] == UPLOAD_ERR_OK) {
             if(file_exists($iconImage)){
             if(!unlink($iconImage)){
                 $error = "Fail to delete file";
@@ -34,6 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['editHeadingSlideConta
         }
         if ($id !== null) {
             // Update existing record
+            if(isset($_POST["name_".$id]))$name=$_POST["name_".$id];
+            if(isset($_POST["clickDir_".$id]))$clickRedir=$_POST["clickDir_".$id];
+
             if ($headingSlideContainers->updateHeadingSlideContainer($id, $iconImage, $name, $clickRedir)) {
                 $success = "Heading Slide Container updated successfully";
             } else {

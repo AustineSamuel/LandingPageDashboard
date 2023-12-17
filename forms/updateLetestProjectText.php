@@ -9,12 +9,13 @@ $success = false;
 $latestProjectsInfo = new LatestProjectsInfo($GLOBALS['CONNECTION']);
 $existingProjects = $latestProjectsInfo->readLatestProjects();
 
+
 $id = null;
 $heading = '';
 $subHeading = '';
 if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['editLatestProject'])) {
     // Assuming there's only one record for LatestProjects
-    //$project = reset($existingProjects);
+    $project = reset($existingProjects);
     if($existingProjects && count($existingProjects) > 0){
     $id = $project['id'] ?? null;
     $heading = $project['heading'];
@@ -27,15 +28,27 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['editLatestProject']))
         $subHeading = $_POST['subHeading'];
 
         // Update existing record
+        if(count($existingProjects)>0){
         if ($latestProjectsInfo->updateLatestProject($id, $heading, $subHeading)) {
             $success = "Latest Project updated successfully";
         } else {
             $error = "Failed to update Latest Project: " . $GLOBALS['CONNECTION']->error;
         }
+    }
+    else{
+        //else add new
+        if ($latestProjectsInfo->createLatestProject($heading, $subHeading)) {
+            $success = "Latest Project added successfully";
+        } else {
+            $error = "Failed to add Latest Project: " . $GLOBALS['CONNECTION']->error;
+        }
+    
+    }
     } else {
         // Form submitted without updated values, no need to update, just display the existing values
     }
 }
+$existingProjects=$existingProjects[0];
 ?>
 
 <!DOCTYPE html>
@@ -66,11 +79,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['editLatestProject']))
                 <br/>
                 <label for="heading">Heading</label><br/>
                 
-                <input style="width:95%;" type="text" name="heading" id="heading" placeholder="Enter Heading" required value="<?php echo $heading; ?>">
+                <input style="width:95%;" type="text" name="heading" id="heading" placeholder="Enter Heading" required value="<?php echo $existingProjects['heading']; ?>">
 
 <br/>
                 <label for="subHeading">Subheading</label><br/>
-                <textarea style="width:95%;" type="text" name="subHeading" id="subHeading" placeholder="Enter Subheading" required value="<?php echo $subHeading; ?>"><?php echo $subHeading; ?></textarea>
+                <textarea style="width:95%;" type="text" name="subHeading" id="subHeading" placeholder="Enter Subheading" required value="<?php echo $existingProjects['subHeading']; ?>"><?php echo $existingProjects['subHeading']; ?></textarea>
 
             </div>
             <button type="submit" name="editLatestProject">Submit</button>

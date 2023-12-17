@@ -31,7 +31,6 @@ class NavigationInfo
             while ($row = $result->fetch_assoc()) {
                 $navigationArray[] = $row;
             }
-
             return $navigationArray;
         } else {
             return array();

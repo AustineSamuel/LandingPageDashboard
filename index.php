@@ -124,6 +124,30 @@ if(!isset($_SESSION['isLogIn'])){
   </a>
 </li>
 
+
+
+<li>
+  <a href="/forms/editNavigation.php" class="flex items-center justify-content-center p-2 space-x-2 rounded-md hover:bg-gray-100"   :class="{'justify-center': !isSidebarOpen}">
+    <span className="text-center " >
+      //
+    </span>
+    <span :class="{ 'lg:hidden': !isSidebarOpen }">Edit Navigation</span>
+  </a>
+</li>
+
+<li>
+  <a href="/forms/deleteNavigation.php" class="flex items-center justify-content-center p-2 space-x-2 rounded-md hover:bg-gray-100"   :class="{'justify-center': !isSidebarOpen}">
+    <span className="text-center " >
+      //
+    </span>
+    <span :class="{ 'lg:hidden': !isSidebarOpen }">Delete Navigation</span>
+  </a>
+</li>
+
+
+
+
+
 <li>
   <a href="/forms/addNavigationOption.php" class="flex items-center justify-content-center p-2 space-x-2 rounded-md hover:bg-gray-100"   :class="{'justify-center': !isSidebarOpen}">
     <span className="text-center " >
@@ -242,6 +266,43 @@ if(!isset($_SESSION['isLogIn'])){
   </a>
 </li>
 
+
+<li>
+  <a href="/forms/BusinessInfo.php" class="flex items-center justify-content-center p-2 space-x-2 rounded-md hover:bg-gray-100"   :class="{'justify-center': !isSidebarOpen}">
+    <span className="text-center" >
+      //
+    </span>
+    <span :class="{ 'lg:hidden': !isSidebarOpen }">Business Text/Image</span>
+  </a>
+</li>
+
+<li>
+  <a href="/forms/addBusinessInfo.php" class="flex items-center justify-content-center p-2 space-x-2 rounded-md hover:bg-gray-100"   :class="{'justify-center': !isSidebarOpen}">
+    <span className="text-center" >
+      //
+    </span>
+    <span :class="{ 'lg:hidden': !isSidebarOpen }">Add Business list text</span>
+  </a>
+</li>
+
+
+<li>
+  <a href="/forms/editDeleteBusinessInfo.php" class="flex items-center justify-content-center p-2 space-x-2 rounded-md hover:bg-gray-100"   :class="{'justify-center': !isSidebarOpen}">
+    <span className="text-center" >
+      //
+    </span>
+    <span :class="{ 'lg:hidden': !isSidebarOpen }">edit/delete Business list text</span>
+  </a>
+</li>
+
+<li>
+  <a href="https://wa.me/08072999853" class="flex items-center justify-content-center p-2 space-x-2 rounded-md hover:bg-gray-100"   :class="{'justify-center': !isSidebarOpen}">
+    <span className="text-center" >
+      //
+    </span>
+    <span :class="{ 'lg:hidden': !isSidebarOpen }" >More features</span>
+  </a>
+</li>
 
 <!-- Sidebar Links... -->
           </ul>
@@ -656,7 +717,7 @@ Eager to contribute innovatively.
 
           <!-- Start Content -->
           <div class="grid grid-cols-1 gap-5 mt-6 sm:grid-cols-2 lg:grid-cols-4">
-            
+            <!--
               <div class="p-4 transition-shadow border rounded-lg shadow-sm hover:shadow-lg">
                 <div class="flex items-start justify-between">
                   <div class="flex flex-col space-y-2">
@@ -669,12 +730,12 @@ Eager to contribute innovatively.
                   <span class="inline-block px-2 text-sm text-white bg-green-300 rounded">14%</span>
                   <span>from 2019</span>
                 </div>
-              </div>
+              </div>--->
     
           </div>
 
           <!-- Table see (https://tailwindui.com/components/application-ui/lists/tables) -->
-          <h3 class="mt-6 text-xl">Users</h3>
+          <h3 class="mt-6 text-xl">Staffs</h3>
           <div class="flex flex-col mt-6">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
               <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
@@ -712,26 +773,25 @@ Eager to contribute innovatively.
                       </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                      <template x-for="i in 10" :key="i">
                         <tr class="transition-all hover:bg-gray-100 hover:shadow-lg">
                           <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                               <div class="flex-shrink-0 w-10 h-10">
                                 <img
                                   class="w-10 h-10 rounded-full"
-                                  src="https://avatars0.githubusercontent.com/u/57622665?s=460&u=8f581f4c4acd4c18c33a87b3e6476112325e8b38&v=4"
+                                  src="https://media.licdn.com/dms/image/C4D03AQGRXN2lFuvC1g/profile-displayphoto-shrink_800_800/0/1636363318882?e=2147483647&v=beta&t=CwFWFzjw3qOrkSueWLgsjnJzWk2gj-3E4IQC0TQhUu4"
                                   alt=""
                                 />
                               </div>
                               <div class="ml-4">
-                                <div class="text-sm font-medium text-gray-900">Ahmed Kamel</div>
-                                <div class="text-sm text-gray-500">ahmed.kamel@example.com</div>
+                                <div class="text-sm font-medium text-gray-900">Austine Samuel</div>
+                                <div class="text-sm text-gray-500">austine914@gmail.com</div>
                               </div>
                             </div>
                           </td>
                           <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900">Regional Paradigm Technician</div>
-                            <div class="text-sm text-gray-500">Optimization</div>
+                            <div class="text-sm text-gray-900">Software developer</div>
+                            <div class="text-sm text-gray-500">Nigeria</div>
                           </td>
                           <td class="px-6 py-4 whitespace-nowrap">
                             <span
@@ -740,13 +800,13 @@ Eager to contribute innovatively.
                               Active
                             </span>
                           </td>
-                          <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">Admin</td>
+                          <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">FullStack developer</td>
                           <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                             <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                           </td>
                         </tr>
-                      </template>
-                    </tbody>
+
+                      </tbody>
                   </table>
                 </div>
               </div>
@@ -757,10 +817,10 @@ Eager to contribute innovatively.
         <footer class="flex items-center justify-between flex-shrink-0 p-4 border-t max-h-14">
           <div>Fullstack developer test &copy; 2020</div>
           <div class="text-sm">
-            Made by
+            Developed by
             <a
               class="text-blue-400 underline"
-              href="https://github.com/Kamona-WD"
+              href="https://github.com/AustineSamuel"
               target="_blank"
               rel="noopener noreferrer"
               >Austine Samuel</a
@@ -769,7 +829,7 @@ Eager to contribute innovatively.
           <div>
             <!-- Github svg -->
             <a
-              href="https://github.com/Kamona-WD/starter-dashboard-layout"
+              href="https://github.com/AustineSamuel/LandingPageDashboard"
               target="_blank"
               class="flex items-center space-x-1"
             >

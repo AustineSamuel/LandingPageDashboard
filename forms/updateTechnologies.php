@@ -53,10 +53,9 @@ if(isset($_POST["name".$id]))$name=$_POST["name".$id];
     <link rel="stylesheet" href="../login/style.css">
 </head>
 <body>
-<div class="container">
-    <div class="card">
+<div class="container" style="display:block;">
+    <div class="card" style="margin: 0 auto;">
         <h2>Edit Technologies</h2>
-
         <?php
         echo $success ? "<div class='alert alert-success'>
             <strong>Success!</strong> $success
@@ -87,23 +86,18 @@ if(isset($_POST["name".$id]))$name=$_POST["name".$id];
 
         <script>
             const inputs=document.getElementsByClassName("img")
-
             for(let i =0;i<inputs.length;i++){
                 const e=inputs[i];
 if(!inputs[i])continue;
                 if(e.getAttribute("type")!=="file")continue;
-console.log(e);            
                 e.addEventListener('change', function () {
-
                 const preview = document.getElementById(this.getAttribute("imageName"));
-                console.log(preview);
                 const file = this.files[0];
                 const reader = new FileReader();
                 reader.onloadend = function () {
                     preview.src = reader.result;
                     preview.style.display = 'block';
                 }
-
                 if (file) {
                     reader.readAsDataURL(file);
                 } else {

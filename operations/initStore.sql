@@ -74,7 +74,6 @@ CREATE TABLE LatestProjectsList (
     heading VARCHAR(255) NOT NULL,
     subHeading VARCHAR(255) NOT NULL
 );
----stop
 
 CREATE TABLE BusinessInfoImage (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -87,6 +86,7 @@ CREATE TABLE BusinessInfoList (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     text TEXT NOT NULL
 );
+---stop
 
 CREATE TABLE GetSolutionText (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
