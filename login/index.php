@@ -5,10 +5,9 @@ $error=false;
 $success=false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
-    $username = "AustineTest@Ganlaxmine.com";
+    $username = "AustineTest@Ganlaxmine.com";//store this in sql table but for now is just for testing purpose
     $password = password_hash("$$$9j@1", PASSWORD_DEFAULT);
 
-    // Assuming you have a valid MySQLi connection
     $stmt = $GLOBALS['CONNECTION']->prepare("INSERT INTO admins (username, password) VALUES (?, ?)");
     
     if (!$stmt) {
@@ -90,9 +89,10 @@ echo $error ? "<div class='alert alert-danger'>
       <button type="submit" name="login">Login</button>
     </form>
     <form method="post" action="">
-      <br/>
-      <button type="submit" name="register">Register Default Admin</button>
-    </form>
+      
+      <!-- <br/><button type="submit" name="register">Register Default Admin</button>
+-->
+ </form>
     <div class="switch"><a href="#">Request for password </a></div>
   </div>
   <script  src="./script.js"></script>
